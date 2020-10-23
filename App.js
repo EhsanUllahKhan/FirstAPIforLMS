@@ -12,10 +12,14 @@ db.authenticate()
     .catch(err => console.log(err))
 
 const app = express()
-const port = process.env.port || 3000;
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
+// test routes
+app.use("/tests", require('./routes/tests'));
 
+
+
+const port = process.env.port || 3000;
 app.listen(port, () => console.log(`Server listening on port ${port}!`))
