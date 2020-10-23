@@ -4,20 +4,9 @@ const express = require('express');
 const path = require('path');
 
 
-const Sequelize = require('sequelize');
-// connecting to database
-const db = new Sequelize('lms', 'postgres', 'postgres', {
-    host: 'localhost',
-    dialect: 'postgres',
-    operatorsAliases: false,
+const db = require("./config/database");
 
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 3000,
-        idle: 10000
-    },
-});
+// checking if DB is connected or not
 db.authenticate()
     .then(() => console.log("\t\tDatabase connected!!........"))
     .catch(err => console.log(err))
