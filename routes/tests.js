@@ -19,27 +19,24 @@ router.get('/', (req, res) => {
 
 
 // inserting one record into database
-router.post('/', bodyParser, function (req, res) {
+router.post('/add', bodyParser, (req, res) => {
+    console.log("adding: ", req.body.title)
+    let title = req.body.title;
+    let specs = req.body.specs;
 
-    //let { title, specs } = { req.query.title, req.query.specs };
-    // let title = req.body.title;
-    // let specs = req.body.specs;
+    console.log("title : ", title, "specs: ", specs)
 
-    console.log(req.body)
-    // await insert into table
-    // Test.create({
-    //     title,
-    //     specs
-    // })
-    //     .then(tests => {
-    //         console.log(`Inserting: \n ${tests}`)
-    //         res.redirect('/tests');
-    //     })
-    //     .catch(err => console.log(`Error: ${err}`))
+    Test.create({
+        title,
+        specs
+    })
+        .then(tests => {
+            console.log(`Inserting: \n ${tests}`)
+            res.redirect('/tests');
+        })
+        .catch(err => console.log(`Error: ${err}`))
     res.send("SUCESS");
-});
-
-
+})
 
 
 module.exports = router; 
