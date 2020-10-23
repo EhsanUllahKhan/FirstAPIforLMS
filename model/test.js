@@ -14,7 +14,7 @@ const test = db.define('test', {
     title: {
         type: Sequelize.STRING
     },
-    spec: {
+    specs: {
         type: Sequelize.STRING
     }
 });
