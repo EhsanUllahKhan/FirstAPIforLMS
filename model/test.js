@@ -17,9 +17,10 @@ const test = db.define('test', {
     specs: {
         type: Sequelize.STRING
     }
-},
-    {
-        timestamps: false
-    });
+} // ,
+    //     {
+    //         timestamps: false
+    //     }
+);
 
 module.exports = test; 
