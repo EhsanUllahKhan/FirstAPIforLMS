@@ -38,5 +38,27 @@ router.post('/add', bodyParser, (req, res) => {
     res.send("SUCESS");
 })
 
+router.put('/put/:id', bodyParser, (req, res) => {
+    console.log("putting", req.params.id)
+    const { title, specs } = req.body
+    Test.findByPk(req.params.bookId)
+        .then((tests) => {
+            Test.update({
+                title,
+                specs
+            })
+        })
+        .then((updatedTest) => {
+            res.status(200).send({
+                message: "update operation successfull",
+                data: {
+                    title: title || updatedTest.title,
+                    specs: specs || updatedTest.specs
+                }
+            })
+        })
+        .catch(error => res.status(400).send(error))
+})
+
 
 module.exports = router; 
