@@ -17,6 +17,16 @@ router.get('/', (req, res) => {
         .catch(err => console.log(`Error: ${err}`))
 })
 
+router.get('/:id', bodyParser, (req, res) => {
+    console.log("getting")
+    //res.send("Tests")
+    Test.findByPk(req.params.id)
+        .then(tests => {
+            console.log(`Test is: \n ${tests}`)
+            res.json(tests)
+        })
+        .catch(err => console.log(`Error: ${err}`))
+})
 
 // inserting one record into database
 router.post('/add', bodyParser, (req, res) => {

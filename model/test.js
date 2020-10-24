@@ -4,7 +4,6 @@
 file name based on Database name
 
 
-
 */
 
 const Sequelize = require('sequelize');
