@@ -31,17 +31,17 @@ router.post('/add', bodyParser, (req, res) => {
         specs
     })
         .then(tests => {
-            console.log(`Inserting: \n ${tests}`)
-            res.redirect('/tests');
+            //console.log(`Inserting: \n ${tests}`)
+            return res.send('ok');
         })
-        .catch(err => console.log(`Error: ${err}`))
-    res.send("SUCESS");
+        .catch(err => console.log(`Error1: ${err}`))
+    // res.send("SUCESSsss");
 })
 
 router.put('/put/:id', bodyParser, (req, res) => {
     console.log("putting", req.params.id)
     const { title, specs } = req.body
-    Test.findByPk(req.params.bookId)
+    Test.findByPk(req.params.id)
         .then((tests) => {
             Test.update({
                 title: title,
@@ -63,5 +63,26 @@ router.put('/put/:id', bodyParser, (req, res) => {
         .catch(error => res.status(400).send(error))
 })
 
+router.delete('/delete/:id', bodyParser, (req, res) => {
+    console.log("Searching for : ", req.params.id, "  to delete")
+    Test.findByPk(req.params.id)
+        .then((test) => {
+            if (test) {
+                return test.destroy()
+                    .then(() => res.status(200).send({
+                        message: "Deleted Successfully"
+                    }))
+                    .catch(error => res.status(400).send(error))
+            }
+            else {
+                return res.status(404).send({
+                    message: "User Not Found!!"
+                })
+            }
+        })
+        .catch(error => res.status(400).send(error))
+})
 
-module.exports = router; 
+module.exports = router;
+
+
