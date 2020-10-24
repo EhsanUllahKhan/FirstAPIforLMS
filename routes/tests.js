@@ -44,9 +44,12 @@ router.put('/put/:id', bodyParser, (req, res) => {
     Test.findByPk(req.params.bookId)
         .then((tests) => {
             Test.update({
-                title,
-                specs
-            })
+                title: title,
+                specs: specs
+            },
+                {
+                    where: { id: req.params.id }
+                })
         })
         .then((updatedTest) => {
             res.status(200).send({
