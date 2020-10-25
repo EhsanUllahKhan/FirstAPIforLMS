@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const Sequelize = require('sequelize');
 
 const path = require('path');
 
@@ -11,6 +12,10 @@ db.authenticate()
     .then(() => console.log("\t\tDatabase connected!!........"))
     .catch(err => console.log(err))
 
+
+// db.tests.hasMany(db.grades);
+// db.grades.belongsTo(db.tests);
+
 const app = express()
 
 
@@ -18,6 +23,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 // test routes
 app.use("/tests", require('./routes/tests'));
+app.use("/grades", require('./routes/grade.controller'));
 
 
 

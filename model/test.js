@@ -15,6 +15,11 @@ const test = db.define('test', {
     },
     specs: {
         type: Sequelize.STRING
+    },
+    id: {
+        type: Sequelize.INTEGER,
+        defaultValue: Sequelize.INTEGER,
+        primaryKey: true
     }
 } // ,
     //     {
