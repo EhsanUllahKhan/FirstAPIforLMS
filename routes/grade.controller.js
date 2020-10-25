@@ -31,12 +31,11 @@ router.get('/:id', bodyParser, (req, res) => {
 
 // inserting one record into database
 router.post('/add', bodyParser, (req, res) => {
-    console.log("adding: ", req.body.title)
     // let title = req.body.title;
     // let tests_id = req.body.tests_id;
     // console.log("title : ", title, "fk:", tests_id)
     const { title, tests_id } = req.body;
-    console.log("title : ", title, "fk:", tests_id)
+    console.log("title : ", title, ", fk:", tests_id)
     Grade.create({
         title,
         tests_id

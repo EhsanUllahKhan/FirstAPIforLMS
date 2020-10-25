@@ -7,24 +7,19 @@ const db = require('../config/database');
 const test = require("./test");
 
 const grades = db.define('grades', {
-    id: {
-        type: Sequelize.INTEGER,
-        defaultValue: Sequelize.INTEGER,
-        primaryKey: true
-    },
     title: {
         type: Sequelize.TEXT
     },
-    // tests_id: {
-    //     // foreign key for Exam board
-    //     type: Sequelize.INTEGER,
-    //     required: true,
-    //     allowNull: false,
-    //     references: {
-    //         model: test,
-    //         key: 'id'
-    //     }
-    // }
+    tests_id: {
+        // foreign key for Exam board
+        type: Sequelize.INTEGER,
+        required: true,
+        allowNull: false,
+        references: {
+            model: "tests",
+            key: 'id'
+        }
+    }
 }
     , {
         //schema: dbConfig.Schemas(1),
